@@ -1,4 +1,3 @@
-source /home/nvimuser/.config/nvim/plugins.vim
 "-------------------------------------------"
 "basic stuff
 "-------------------------------------------"
@@ -58,14 +57,6 @@ inoremap <C-e> <esc>$i
 "withdraw highlights
 nnoremap <Leader>h :nohlsearch<CR>
 
+source /home/nvimuser/.config/nvim/plugins.vim
 
-" ---- PLUGINS ---- "
-"NerdTree
-nnoremap <C-f> :NERDTreeFocus<cr>
-nnoremap <F2> :NERDTreeToggle<cr>
-
-
-"lua <<EOF
-"print('hello from lua')
-"EOF
-"lua print('this also works')
+let g:python3_host_prog = '/usr/bin/python3'
