@@ -33,26 +33,20 @@ RUN sudo mv squashfs-root / && sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 # nvim plugin setup
 RUN mkdir -p /home/nvimuser/.config/nvim/autoload
 RUN sudo curl -fLo /home/nvimuser/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-COPY ./init.vim ./plugins.vim ./coc-setup.vim /home/nvimuser/.config/nvim/
-#COPY ./init.lua /home/nvimuser/.config/nvim/
+COPY ./init.vim ./plugins.vim /home/nvimuser/.config/nvim/
 COPY ./test.sh .
-COPY ./index.js .
-#COPY ./init.lua .
-COPY entrypoint.sh /usr/local/bin
-#RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 RUN sudo chmod +x test.sh
-#RUN sudo python3 -m pip install --user --upgrade pynvim
-#RUN sudo pip3 install jedi
+
 RUN nvim +PlugInstall +qall
 
+#need fix LSP python and C
+#RUN sudo python3 -m pip install --user --upgrade pynvim
+#RUN sudo pip3 install jedi
 
-#RUN sudo ./test.sh
+COPY ./entrypoint.sh /usr/local/bin
+
 RUN mkdir workspace
 WORKDIR /home/nvimuser/workspace/
 
-#RUN nvim 'CocInstall coc-json|qa'
-#RUN [ "/bin/bash", "-c", "nvim -n -i NONE -es -S <(echo -e 'silent! CocInstall coc-json coc-tsserver')" ]
 
-
-ENTRYPOINT bash
-#ENTRYPOINT ["nvim", "$@"]
+ENTRYPOINT ["bash", "/usr/local/bin/entrypoint.sh"]
