@@ -22,7 +22,7 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
-Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
+Plug 'MaskRay/ccls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 "Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 "Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}

@@ -7,7 +7,8 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get install  -y \
 		unzip \
 		gcc \
 		fzf \
-		python3-pip
+		python3-pip \
+		clang
 
 RUN adduser --disabled-password --gecos '' nvimuser
 RUN adduser nvimuser sudo
@@ -34,8 +35,9 @@ RUN sudo mv squashfs-root / && sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 RUN mkdir -p /home/nvimuser/.config/nvim/autoload
 RUN sudo curl -fLo /home/nvimuser/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 COPY ./init.vim ./plugins.vim /home/nvimuser/.config/nvim/
-COPY ./test.sh .
-RUN sudo chmod +x test.sh
+COPY ./setup.sh .
+RUN sudo chmod +x setup.sh
+RUN sudo ./setup.sh
 
 RUN nvim +PlugInstall +qall
 
@@ -49,4 +51,5 @@ RUN mkdir workspace
 WORKDIR /home/nvimuser/workspace/
 
 
-ENTRYPOINT ["bash", "/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT bash
+#ENTRYPOINT ["bash", "/usr/local/bin/entrypoint.sh"]
